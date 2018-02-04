@@ -1,19 +1,20 @@
 ## Advanced Lane Finding
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
+[//]: # (Image References)
 
-In this project, your goal is to write a software pipeline to identify the lane boundaries in a video, but the main output or product we want you to create is a detailed writeup of the project.  Check out the [writeup template](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup.  
+[image1]: ./output_images/chesboard_1.png "Chesboard 1"
+[image2]: ./output_images/chesboard_2.png "Chesboard 2"
+[image3]: ./output_images/binary1.png "Binary example 1"
+[image4]: ./output_images/binary2.png "Binary example 2"
+[image5]: ./output_images/highlighted_lines.jpg "Line Fit Original"
+[image6]: ./output_images/loop_fit.jpg "Polynomial fit"
+[image7]: ./output_images/reg.jpg "Original Image"
+[image8]: ./output_images/undist.jpg "Undistorted Image"
+[image9]: ./output_images/draw_test.jpg "Draw lane line test"
+[image10]: ./output_images/final_test.jpg "test of the pipeline"
+[image11]: ./output_images/warp1.jpg "Warped example 1"
+[image12]: ./output_images/warp2.jpg "warped example 2"
 
-Creating a great writeup:
----
-A great writeup should include the rubric points as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
-
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
-
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
-
-The Project
----
 
 The goals / steps of this project are the following:
 
@@ -26,14 +27,123 @@ The goals / steps of this project are the following:
 * Warp the detected lane boundaries back onto the original image.
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
-The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.  If you want to extract more test images from the videos, you can simply use an image writing method like `cv2.imwrite()`, i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.  
+**For a technical step-by-step explination, launch the Ipython notebook for this project at:**
 
-To help the reviewer examine your work, please save examples of the output from each stage of your pipeline in the folder called `ouput_images`, and include a description in your writeup for the project of what each image shows.    The video called `project_video.mp4` is the video your pipeline should work well on.  
+[Ipy notebook](https://github.com/andrewsommerlot/Carnd-Advanced-Lane-Lines/blob/master/advanced_lane_lines.ipynb "Ipy notebook") 
 
-The `challenge_video.mp4` video is an extra (and optional) challenge for you if you want to test your pipeline under somewhat trickier conditions.  The `harder_challenge.mp4` video is another optional challenge and is brutal!
+## Compute the camera calibration matrix and distortion coefficients
 
-If you're feeling ambitious (again, totally optional though), don't stop there!  We encourage you to go out and take video of your own, calibrate your camera and show us how you would implement this project from scratch!
+This is not too difficult as most of the code was given in the lesson. I just printed the images to the console instead of the window and waiting thing. Additionally, CV2 provides a calibratecamera function, which I used along with the calculated objpoint, imgpoint, and the shape of the images. The main output of this function is a matrix I will use to undistort images next. Also it will be used to warp images which will greatly help when fitting lane lines. 
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+![Chesboard Corners 1][image1]
 
+**Example of Chesboard Calibration image with chesboard corners highlighted.**
+
+![Chesboard Corners 2][image1]
+
+**Another Example of Chesboard Calibration image with chesboard corners highlighted.**
+
+
+## Apply a distortion correction to raw images
+
+The first step after calibration, is to use the calibration to undistort the images. This is important to get accurate measruemetns later on, even though in this particular application, it can be difficult to see the difference. The original image is on the left, and the undistorted on the right, you can see the slight difference when focusing on the road sign. Effectively this "flattens out" or "smooths out" the image so distances are more constant along the x and y axis. 
+
+![Raw image][image8]
+
+**Example of Chesboard Calibration image with chesboard corners highlighted.**
+
+![Undistorted Image][image9]
+
+**Another Example of Chesboard Calibration image with chesboard corners highlighted.**
+
+
+## Use color transforms, gradients, etc., to create a thresholded binary image
+
+
+![Binary Example 1][image3]
+
+**Example of resulting binary image from threshold process.**
+
+![Binary Example 2][image4]
+
+**Another Example of resulting binary image from threshold process.**
+
+
+## Apply a perspective transform to rectify binary image ("birds-eye view")
+
+Next I used the matricies from the calibation to create warped images that make a birds eye view of the road. This setp also has parameters which needed to be tuned, again, simply by trial and error. Additionaly, this set required designating the area which was warped, I did this by trial and error and also using gimp to get pixel locations. In my oppinion, this step can cause a lot of error if care is not take, I did this rather quickly. If this pipeine was to be implemented, I would defninately review the warp procudure. 
+
+![Binary Example 1][image11]
+
+**Example warped image**
+
+![Binary Example 2][image12]
+
+**Another Example of a warped image**
+
+
+## Detect lane pixels and fit to find the lane boundary
+
+This step is almost entirely from the class notes. Also, this is not a function. Its worth noting that because this particular piece of code will not be in the final pipeline. I use this code to get a first fit from an example image. I then use that first fit to initilize the last_fits slot in the lane class I define later. Major things happening here are a histogram search of the bottom half of the image, and then an iterative window search that identifies pixels that will be considered part of the lane. The next piece of code was also provided by udacity and shows how this process performed on one of the example images. 
+
+![Detecting lane pixels][image5]
+
+**Lane pixels detected**
+
+Next, I used more code provided in the class to create a polynomial fit function that will go into the pipeline. This function uses the previous polynomial fits to make the next polynomial fits. It is initialized once with the code from the section above and then loop through using the last fit for the next fit. That way, the window search only needs to be used once. There is one wrinkle to this, in that I ended up using the previous 200 fits with a weighted average, but, the poly function deals only with 2 fits at a time. The next piece of code shows how the function performs on an example image. 
+
+![Polynomial fitting process which will be used in final pipeline][image6]
+
+**Lane line polynomial function to be used in final pipeline**
+
+
+## Determine the curvature of the lane and vehicle position with respect to center
+
+The class notes provided some code and suggestions for calculating radius and center distance. These will later be plotted on to the final images. The function given in the class notes was used to calcualte radius of curvature for each lane line. I then rounded each to the nearest whole number and took the minimum of them to print out. the reason I did this was incase I ended up needing a "sanity check" on the radius then I wanted to use the potentially worst one for the given fit. I calculated center distance by taking the average pixel x position in the bottom 25% of the picture and finding the pixel distance to each side from the center of image, and then converting pixel distances to meters with a constant. There are a lot of assumptions wrapped up in there, but the reasult did not seem too bad.
+
+
+
+## Output visual display of the lane boundaries, curvature and lane postition
+
+### Lane Class Definition
+
+I did not use the structure suggested in the class notes, as my code as written to this point could not take advantage of all the slots. So, I paired it down to what I hoped would be enough to smoothing predict lane lines. Here, I store a nd array abject of n number of past polynomial fits. I used this later to calcuate a weighted average, with recent fits being more important than previous fits through a learning function calculating the weights. The n number flexibiity is important as I needed to tune this number to get good results.
+
+### Draw lane lines
+
+Finally I'm drawing lane lines! This is the first time the fits will be projected back onto the road visually. I used the suggested code from the lesson to build the fucntion. Additionally, this fucntion takes the output of the  polynomial fits to write text in the top right corner displaying the calculations. I ran the funtion on a test image below. 
+
+![predicted lane lines][image9]
+
+**Projected lane lines onto undistorted image**
+
+
+### Saving polynomial fits and applying a weighted average
+
+When I ran this pipeline "raw" or just displaying each fit as the came, the resutling video was not encuraging. In an effort to solve this problem I built a class object to save n number of previous fits, and caculate the weighted average of the fits (latest predictions beining most important). This greatly improved the result, but added more parameters which need to be tuned and likely have different optima depending on the state of the video (dark, light, raining, shadows, etc). The average fit function calculates the averge of the polynomial wieghts, and the lane step function keeps track of the last n polynomial weights. 
+
+
+### Putting together the whole pipeline
+
+Yes! Finally the whole pipeline can be put together. The pipeline utilizes the undistort, apply_threholds, warp, average_fit, poly_fit, calc_radius, draw_lane, and lane_step functions. Addidtionally, it adds a parameter dictating how many polynomial weights to save and average over. This is "hard-coded" as a few other things are, but it works fine for a research document like this. The whole pipline would have to be more robust to be acutally implemented. 
+
+
+### Initilize and Test Pipeline
+
+The pipeline requires an initilized object for right_lane and left_lane last_fits slots. I made this object with repeated fits for the first test image for the same n as is set in the pipeline. After making the object I ran the pipeline on a test image.
+
+![predicted lane lines][image10]
+
+**Output of final pipeline on test image**
+
+## Video output 
+
+The final pipeline was then applied to the project video included in the github repository. The link to the result is below. 
+
+
+[![Advanced Lane Lines](http://img.youtube.com/vi/L3-0X1eydgE/0.jpg)](https://youtu.be/L3-0X1eydgE "Advanced Lane Lines")
+
+
+
+
+ 
