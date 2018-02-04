@@ -6,12 +6,12 @@
 [image2]: ./output_images/chesboard_2.png "Chesboard 2"
 [image3]: ./output_images/binary1.png "Binary example 1"
 [image4]: ./output_images/binary2.png "Binary example 2"
-[image5]: ./output_images/highlighted_lines.jpg "Line Fit Original"
-[image6]: ./output_images/loop_fit.jpg "Polynomial fit"
-[image7]: ./output_images/reg.jpg "Original Image"
-[image8]: ./output_images/undist.jpg "Undistorted Image"
-[image9]: ./output_images/draw_test.jpg "Draw lane line test"
-[image10]: ./output_images/final_test.jpg "test of the pipeline"
+[image5]: ./output_images/highlighted_lines.jpng "Line Fit Original"
+[image6]: ./output_images/loop_fit.png "Polynomial fit"
+[image7]: ./output_images/reg.png "Original Image"
+[image8]: ./output_images/undist.png "Undistorted Image"
+[image9]: ./output_images/draw_test.png "Draw lane line test"
+[image10]: ./output_images/final_test.png "test of the pipeline"
 [image11]: ./output_images/warp1.jpg "Warped example 1"
 [image12]: ./output_images/warp2.jpg "warped example 2"
 
@@ -39,7 +39,7 @@ This is not too difficult as most of the code was given in the lesson. I just pr
 
 **Example of Chesboard Calibration image with chesboard corners highlighted.**
 
-![Chesboard Corners 2][image1]
+![Chesboard Corners 2][image2]
 
 **Another Example of Chesboard Calibration image with chesboard corners highlighted.**
 
