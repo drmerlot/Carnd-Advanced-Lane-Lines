@@ -168,8 +168,7 @@ The pipeline requires an initilized object for right_lane and left_lane last_fit
 
 The final pipeline was then applied to the project video included in the github repository. The link to the result is below. 
 
-
-[![Advanced Lane Lines](http://img.youtube.com/vi/L3-0X1eydgE/0.jpg)](https://youtu.be/L3-0X1eydgE "Advanced Lane Lines")
+[![Advanced Lane Lines](http://img.youtube.com/vi/XApJRowRnz8/0.jpg)](https://youtu.be/XApJRowRnz8 "Advanced Lane Lines")
 
 
 
