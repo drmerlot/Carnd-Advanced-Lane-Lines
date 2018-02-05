@@ -129,7 +129,7 @@ After this, I wrote out the results in an annotation on the output image with cv
 Finally I'm drawing lane lines! This is the first time the fits will be projected back onto the road visually. I used the suggested code from the lesson to build the fucntion. Additionally, this fucntion takes the output of the  polynomial fits to write text in the top right corner displaying the calculations. I ran the funtion on a test image below. 
 
 
-![predicted lane lines][image10]
+![predicted lane lines][image9]
 
 **Projected lane lines onto undistorted image**
 
