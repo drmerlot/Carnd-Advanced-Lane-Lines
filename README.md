@@ -1,5 +1,15 @@
 ## Advanced Lane Finding
 
+---
+**See the final product on youtube**
+
+[![Youtube Link To Advanced Lane Line Video](https://youtu.be/G2Ni5QpkCDs)]
+
+
+[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/XApJRowRnz8 "Advanced Lane Lines")
+
+---
+
 [//]: # (Image References)
 
 [image1]: ./output_images/chesboard_1.png "Chesboard 1"
@@ -16,7 +26,7 @@
 [image12]: ./output_images/warp2.png "warped example 2"
 
 
-The goals / steps of this project are the following:
+**The goals / steps of this project are the following:**
 
 * Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
 * Apply a distortion correction to raw images.
@@ -168,10 +178,11 @@ The pipeline requires an initilized object for right_lane and left_lane last_fit
 
 The final pipeline was then applied to the project video. I uploaded the video to youtube, you can see it by clicking the link below or clicking the image. 
 
-[![Youtube Link To Advanced Lane Line Video](https://youtu.be/XApJRowRnz8)]
+
+[![Youtube Link To Advanced Lane Line Video](https://youtu.be/G2Ni5QpkCDs)]
 
 
-[![Advanced Lane Lines](http://img.youtube.com/vi/XApJRowRnz8/0.jpg)](https://youtu.be/XApJRowRnz8 "Advanced Lane Lines")
+[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/XApJRowRnz8 "Advanced Lane Lines")
 
 
 
