@@ -3,10 +3,10 @@
 ---
 **See the final product on youtube**
 
-[Youtube Link To Advanced Lane Line Video](https://youtu.be/G2Ni5QpkCDs "Pipeline Output")
+[Youtube Link To Advanced Lane Line Video](https://youtu.be/S5tNAVqEuqo "Pipeline Output")
 
 
-[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/G2Ni5QpkCDs "Advanced Lane Lines")
+[![Advanced Lane Lines](http://img.youtube.com/vi/S5tNAVqEuqo/0.jpg)](https://youtu.be/S5tNAVqEuqo "Advanced Lane Lines")
 
 ---
 
@@ -179,10 +179,10 @@ The pipeline requires an initilized object for right_lane and left_lane last_fit
 The final pipeline was then applied to the project video. I uploaded the video to youtube, you can see it by clicking the link below or clicking the image. 
 
 
-[Youtube Link To Advanced Lane Line Video](https://youtu.be/G2Ni5QpkCDs "Pipeline Output")
+[Youtube Link To Advanced Lane Line Video](https://youtu.be/S5tNAVqEuqo "Pipeline Output")
 
 
-[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/G2Ni5QpkCDs "Advanced Lane Lines")
+[![Advanced Lane Lines](http://img.youtube.com/vi/S5tNAVqEuqo/0.jpg)](https://youtu.be/S5tNAVqEuqo "Advanced Lane Lines")
 
 
 
