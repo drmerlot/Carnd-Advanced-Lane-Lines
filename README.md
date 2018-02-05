@@ -6,7 +6,7 @@
 [Youtube Link To Advanced Lane Line Video](https://youtu.be/G2Ni5QpkCDs "Pipeline Output")
 
 
-[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/XApJRowRnz8 "Advanced Lane Lines")
+[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/G2Ni5QpkCDs "Advanced Lane Lines")
 
 ---
 
@@ -182,7 +182,7 @@ The final pipeline was then applied to the project video. I uploaded the video t
 [Youtube Link To Advanced Lane Line Video](https://youtu.be/G2Ni5QpkCDs "Pipeline Output")
 
 
-[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/XApJRowRnz8 "Advanced Lane Lines")
+[![Advanced Lane Lines](http://img.youtube.com/vi/G2Ni5QpkCDs/0.jpg)](https://youtu.be/G2Ni5QpkCDs "Advanced Lane Lines")
 
 
 
